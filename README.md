@@ -29,4 +29,4 @@ Next step is to create virtual environment, but before all that, make sure you h
 There are many tutorials that show how to connect to it with wifi to control it, and to deploy files, etc..
 Then you can set the OS to execute the `main.py` once it is booted.
 
-Optimizations may be made in future inchaallah
+Optimizations may be made in future.
