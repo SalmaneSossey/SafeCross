@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SafeCross - AI-Powered Safe Street Crossing for the Visually Impaired">
+    <title>SafeCross - AI-Powered Safe Street Crossing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">AI-Powered Assistive Technology</div>
+            <h1 class="hero-title">
+                <span class="gradient-text">SafeCross</span>
+            </h1>
+            <p class="hero-tagline">AI-Powered Safe Street Crossing for the Visually Impaired</p>
+            <p class="hero-description">
+                An intelligent robotics system that leverages computer vision and real-time object detection 
+                to help blind individuals navigate street crossings safely. Using MobileNet SSD and optical 
+                flow analysis, SafeCross provides haptic feedback to alert users of moving vehicles.
+            </p>
+            <div class="hero-buttons">
+                <a href="#simulation" class="btn btn-primary">See It In Action</a>
+                <a href="https://github.com/SalmaneSossey/SafeCross" target="_blank" class="btn btn-secondary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    View on GitHub
+                </a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-card">
+                <div class="card-icon">🚦</div>
+                <div class="card-label">Real-time Detection</div>
+            </div>
+            <div class="floating-card">
+                <div class="card-icon">👁️</div>
+                <div class="card-label">Motion Analysis</div>
+            </div>
+            <div class="floating-card">
+                <div class="card-icon">📳</div>
+                <div class="card-label">Haptic Feedback</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulation Section -->
+    <section id="simulation" class="simulation-section">
+        <div class="container">
+            <h2 class="section-title">Interactive Simulation</h2>
+            <p class="section-subtitle">Experience how SafeCross analyzes traffic in real-time</p>
+            
+            <div class="simulation-container">
+                <!-- Canvas for the simulation -->
+                <canvas id="simulationCanvas"></canvas>
+                
+                <!-- Safety Banner Overlay -->
+                <div id="safetyBanner" class="safety-banner"></div>
+                
+                <!-- Vibration Motor Indicators -->
+                <div class="motor-indicators">
+                    <div class="motor-indicator" id="motorLeft">
+                        <div class="motor-circle"></div>
+                        <span>Left Motor</span>
+                    </div>
+                    <div class="motor-indicator" id="motorRight">
+                        <div class="motor-circle"></div>
+                        <span>Right Motor</span>
+                    </div>
+                </div>
+                
+                <!-- Safety History Bar -->
+                <div class="safety-history-container">
+                    <div class="safety-history-label">Safety History (2s window)</div>
+                    <div id="safetyHistoryBar" class="safety-history-bar"></div>
+                </div>
+                
+                <!-- Control Panel -->
+                <div class="control-panel">
+                    <div class="control-group">
+                        <button id="playPauseBtn" class="control-btn">⏸ Pause</button>
+                        <button id="addVehicleBtn" class="control-btn">➕ Add Vehicle</button>
+                        <button id="clearRoadBtn" class="control-btn">🗑️ Clear Road</button>
+                    </div>
+                    <div class="control-group">
+                        <label for="speedSlider">Speed: <span id="speedValue">1.0</span>x</label>
+                        <input type="range" id="speedSlider" min="0.1" max="3" step="0.1" value="1">
+                    </div>
+                    <div class="control-group">
+                        <label>
+                            <input type="checkbox" id="showCriticalZone" checked>
+                            Show Critical Zone
+                        </label>
+                        <label>
+                            <input type="checkbox" id="showBoundingBoxes" checked>
+                            Show Bounding Boxes
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">A step-by-step breakdown of the SafeCross pipeline</p>
+            
+            <div class="pipeline">
+                <div class="pipeline-step">
+                    <div class="step-icon">📹</div>
+                    <div class="step-number">01</div>
+                    <h3>Camera Capture</h3>
+                    <p>USB camera captures live video feed at 25 FPS, providing continuous visual input of the street environment.</p>
+                </div>
+                
+                <div class="pipeline-arrow">→</div>
+                
+                <div class="pipeline-step">
+                    <div class="step-icon">🔍</div>
+                    <div class="step-number">02</div>
+                    <h3>Object Detection</h3>
+                    <p>MobileNet SSD identifies objects in the frame with 0.3 confidence threshold, detecting vehicles, persons, bicycles, and more.</p>
+                </div>
+                
+                <div class="pipeline-arrow">→</div>
+                
+                <div class="pipeline-step">
+                    <div class="step-icon">🌊</div>
+                    <div class="step-number">03</div>
+                    <h3>Motion Analysis</h3>
+                    <p>Lucas-Kanade optical flow (40 feature points) determines which detected objects are moving vs. static.</p>
+                </div>
+                
+                <div class="pipeline-arrow">→</div>
+                
+                <div class="pipeline-step">
+                    <div class="step-icon">⚠️</div>
+                    <div class="step-number">04</div>
+                    <h3>Safety Decision</h3>
+                    <p>Algorithm checks if moving vehicles (bus, car, truck, motorbike) are in the critical zone (lower 60% of frame).</p>
+                </div>
+                
+                <div class="pipeline-arrow">→</div>
+                
+                <div class="pipeline-step">
+                    <div class="step-icon">📊</div>
+                    <div class="step-number">05</div>
+                    <h3>Smoothed Output</h3>
+                    <p>SafetyHistory smooths decisions over 2-second window with 70% threshold to avoid false alerts.</p>
+                </div>
+                
+                <div class="pipeline-arrow">→</div>
+                
+                <div class="pipeline-step">
+                    <div class="step-icon">📳</div>
+                    <div class="step-number">06</div>
+                    <h3>Haptic Feedback</h3>
+                    <p>Vibration motors provide tactile alerts: one pattern for "safe to cross", another for "do not cross".</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Architecture Section -->
+    <section id="architecture" class="architecture">
+        <div class="container">
+            <h2 class="section-title">Technical Architecture</h2>
+            <p class="section-subtitle">Built with proven AI and computer vision technologies</p>
+            
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3>System Components</h3>
+                    <div class="component-diagram">
+                        <div class="component">
+                            <div class="component-icon">🖥️</div>
+                            <div class="component-name">Raspberry Pi 4</div>
+                        </div>
+                        <div class="component">
+                            <div class="component-icon">📷</div>
+                            <div class="component-name">USB Camera</div>
+                        </div>
+                        <div class="component">
+                            <div class="component-icon">📳</div>
+                            <div class="component-name">2x Vibration Motors</div>
+                        </div>
+                        <div class="component">
+                            <div class="component-icon">🔋</div>
+                            <div class="component-name">Power Bank</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>Technology Stack</h3>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Python 3.11</span>
+                        <span class="tech-badge">OpenCV</span>
+                        <span class="tech-badge">NumPy</span>
+                        <span class="tech-badge">MobileNet SSD</span>
+                        <span class="tech-badge">Caffe</span>
+                        <span class="tech-badge">Raspberry Pi OS</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="code-showcase">
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-filename">detection.py</span>
+                        <span class="code-lang">Python</span>
+                    </div>
+                    <pre><code class="language-python">def run_detection(net, frame):
+    (h, w) = frame.shape[:2]
+    blob = cv2.dnn.blobFromImage(
+        cv2.resize(frame, (300,300)),
+        0.007843, (300,300), 127.5
+    )
+    net.setInput(blob)
+    detections = net.forward()
+    result = []
+    for i in range(int(detections.shape[2])):
+        conf = detections[0, 0, i, 2]
+        if conf > THRESHOLD:  # 0.3
+            idx = int(detections[0, 0, i, 1])
+            label = CLASSES[idx]
+            box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
+            (sx, sy, ex, ey) = box.astype("int")
+            result.append((label, conf, (sx, sy, ex, ey)))
+    return result</code></pre>
+                </div>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-filename">optical_flow.py</span>
+                        <span class="code-lang">Python</span>
+                    </div>
+                    <pre><code class="language-python">def compute_motion(prev_gray, curr_gray, bbox, dims):
+    (sx, sy, ex, ey) = bbox
+    roi_prev = prev_gray[sy:ey, sx:ex]
+    roi_curr = curr_gray[sy:ey, sx:ex]
+    
+    # Extract feature points
+    pts = cv2.goodFeaturesToTrack(
+        roi_prev, maxCorners=40, 
+        qualityLevel=0.3, minDistance=7
+    )
+    
+    if pts is not None:
+        pts += np.array([[sx, sy]], dtype=np.float32)
+        pts_next, status, _ = cv2.calcOpticalFlowPyrLK(
+            prev_gray, curr_gray, pts, None, **LK_PARAMS
+        )
+        
+        # Calculate median displacement
+        disp = np.linalg.norm(valid - orig, axis=1)
+        median_disp = np.median(disp)
+        
+    moving = median_disp > adaptive_threshold
+    return median_disp, moving</code></pre>
+                </div>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-filename">decision.py</span>
+                        <span class="code-lang">Python</span>
+                    </div>
+                    <pre><code class="language-python">def decide_safety(moving_objs, target_h):
+    for obj in moving_objs:
+        label, bbox, _ = obj
+        center = (bbox[1] + bbox[3]) / 2.0
+        
+        # Check if vehicle in critical zone (lower 60%)
+        if label in {"bus", "car", "truck", "motorbike"} \
+           and center > 0.6 * target_h:
+            return False  # UNSAFE
+    
+    return True  # SAFE
+
+class SafetyHistory:
+    def get_smoothed_decision(self):
+        if not self.history:
+            return False
+        ratio = self.history.count(True) / float(len(self.history))
+        return ratio >= self.thresh  # 70% threshold</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hardware & Requirements Section -->
+    <section id="requirements" class="requirements">
+        <div class="container">
+            <h2 class="section-title">Hardware & Requirements</h2>
+            
+            <div class="requirements-grid">
+                <div class="requirement-card">
+                    <h3>🔧 Hardware Components</h3>
+                    <ul>
+                        <li><strong>Raspberry Pi 4</strong> - Main processing unit</li>
+                        <li><strong>SD Card</strong> - For operating system storage</li>
+                        <li><strong>USB Camera</strong> - Real-time video capture</li>
+                        <li><strong>2x Vibration Motors</strong> - Mini Vibration Motor Module with PCB Driver Board</li>
+                        <li><strong>Power Bank</strong> - Portable power supply</li>
+                    </ul>
+                </div>
+                
+                <div class="requirement-card">
+                    <h3>💻 Software Requirements</h3>
+                    <ul>
+                        <li><strong>Python 3.11</strong> - Programming language</li>
+                        <li><strong>OpenCV</strong> - Computer vision library</li>
+                        <li><strong>NumPy</strong> - Numerical computing</li>
+                        <li><strong>MobileNet SSD Model</strong> - .caffemodel weights</li>
+                        <li><strong>Deploy Prototxt</strong> - Model architecture definition</li>
+                    </ul>
+                </div>
+                
+                <div class="requirement-card full-width">
+                    <h3>⚙️ Setup Guide</h3>
+                    <ol>
+                        <li><strong>Install Raspberry Pi OS</strong> on SD card and configure WiFi, username, and hostname</li>
+                        <li><strong>Update the system:</strong> <code>sudo apt update && sudo apt upgrade</code></li>
+                        <li><strong>Install dependencies:</strong> <code>pip install numpy opencv-python</code></li>
+                        <li><strong>Download model files</strong> from the GitHub repository (.caffemodel and .prototxt)</li>
+                        <li><strong>Connect hardware components:</strong> USB camera to Pi, vibration motors to GPIO pins 17 & 27</li>
+                        <li><strong>Transfer project files</strong> to Raspberry Pi via SCP or USB</li>
+                        <li><strong>Run the application:</strong> <code>python main.py</code></li>
+                        <li><strong>Optional:</strong> Configure autostart on boot for production use</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>SafeCross</h3>
+                    <p>Empowering the visually impaired with AI-driven safety technology</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/SalmaneSossey/SafeCross" target="_blank" class="footer-link">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        GitHub Repository
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SafeCross by <a href="https://github.com/SalmaneSossey" target="_blank">SalmaneSossey</a>. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="simulation.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
