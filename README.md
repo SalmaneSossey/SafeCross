@@ -30,3 +30,5 @@ There are many tutorials that show how to connect to it with wifi to control it,
 Then you can set the OS to execute the `main.py` once it is booted.
 
 Optimizations may be made in future.
+
+# Realized by : ACHAKOURI Mohamed & SOSSEY Salmane
